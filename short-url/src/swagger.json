@@ -1,0 +1,120 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "默认模块",
+    "description": "",
+    "version": "1.0.0"
+  },
+  "tags": [],
+  "paths": {
+    "/urlRecord": {
+      "post": {
+        "summary": "生成短链接",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              },
+              "example": {
+                "originalUrl": "https://sequelize.org/docs/v6/core-concepts",
+                "urlCode": "abcdef"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "example": {
+                  "message": "URL record created successfully",
+                  "data": {
+                    "id": "1777269060420",
+                    "originalUrl": "https://sequelize.org/docs/v6/core-concepts",
+                    "shortUrl": "https://localhost:5432/abcdef",
+                    "urlCode": "abcdef",
+                    "updatedAt": "2026-04-27T05:51:00.420Z",
+                    "createdAt": "2026-04-27T05:51:00.420Z"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/{urlCode}": {
+      "get": {
+        "summary": "短链接跳转",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "urlCode",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "example": "1abcdef",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "example": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJkYXRhIjoiMjA4NDY4MzQ5NEBxcS5jb20iLCJleHAiOjE3NzcxMTA2MDh9.r5AoFE3r4BWRFnjknqmE0uPE0nVROC6B6YGMskopBqE",
+            "schema": {
+              "type": "string",
+              "default": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJkYXRhIjoiMjA4NDY4MzQ5NEBxcS5jb20iLCJleHAiOjE3NzcxMTA2MDh9.r5AoFE3r4BWRFnjknqmE0uPE0nVROC6B6YGMskopBqE"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "example": {
+                  "error": "URL not found"
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    }
+  },
+  "webhooks": {},
+  "components": {
+    "schemas": {},
+    "responses": {},
+    "securitySchemes": {}
+  },
+  "servers": [
+    {
+      "url": "http://127.0.0.1:3000/v1",
+      "description": "测试环境"
+    }
+  ],
+  "security": []
+}
